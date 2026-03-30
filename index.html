@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://telegram.org"></script>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f0f0f0; }
+        input { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #ccc; }
+        button { width: 100%; padding: 10px; background: #0088cc; color: white; border: none; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <h3>Мои задачи</h3>
+    <input type="text" id="task" placeholder="Что нужно сделать?">
+    <button onclick="sendTask()">Добавить и завести пинг</button>
+
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand(); // Развернуть на весь экран
+
+        function sendTask() {
+            let task = document.getElementById('task').value;
+            if (task) {
+                tg.sendData(JSON.stringify({task: task})); // Отправляем данные боту
+                tg.close(); // Закрываем приложение
+            }
+        }
+    </script>
+</body>
+</html>
